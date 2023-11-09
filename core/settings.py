@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #!APPS
     'blog.apps.BlogConfig',
     'authentication.apps.AuthenticationConfig',
     # third party
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     "django_browser_reload.middleware.BrowserReloadMiddleware",
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -125,7 +127,8 @@ EMAIL_USE_TLS = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-MEDIA_URL = 'post/'
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 
 # STATIC_ROOT = os.path.join(BASE_DIR, "static")
@@ -142,3 +145,6 @@ COMPRESS_ROOT = BASE_DIR / 'static'
 COMPRESS_ENABLED = True
 
 STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
+
+
+AUTH_USER_MODEL='authentication.CustomUser'
